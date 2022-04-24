@@ -6,7 +6,9 @@ let userRouter = new Router();
 userRouter.route("/sign-up").post(async (request, response) => {
   try {
     let { userName, password, mobileNo } = request.body;
-    if (await userModel.find({ userName })) {
+    let isUser = await userModel.find({ userName });
+    console.log(isUser);
+    if (isUser.length) {
       response
         .status(203)
         .send({ success: false, message: "User already Exists!!" });
