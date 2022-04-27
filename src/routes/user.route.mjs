@@ -40,7 +40,7 @@ userRouter.route("/login").post(async (request, response) => {
         );
     } else {
       response
-        .status(404)
+        .status(200)
         .send({ success: false, message: "User doesn't Exits" });
     }
   } catch (e) {
