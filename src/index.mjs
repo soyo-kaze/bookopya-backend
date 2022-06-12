@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import bookRouter from "./routes/book.route.mjs";
 import userRouter from "./routes/user.route.mjs";
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use("/user", userRouter);
+app.use("/books", bookRouter);
 
 app.get("/", (request, response) => {
   response.send({ name: "Sam", message: "Hello World" });
