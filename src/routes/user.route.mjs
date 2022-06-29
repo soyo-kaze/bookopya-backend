@@ -29,15 +29,21 @@ userRouter.route("/login").post(async (request, response) => {
   try {
     let { userName, password } = request.body;
     let userData = await userModel.find({ userName });
+    let data = {
+      userName: userData[0].userName,
+      mobileNo: userData[0].mobileNo,
+    };
     if (userData.length) {
       let isPass = await bcrypt.compare(password, userData[0].password);
-      response
-        .status(200)
-        .send(
-          isPass
-            ? { success: true, message: "User logged-in successfully!!" }
-            : { success: false, message: "Incorrect Password" }
-        );
+      response.status(200).send(
+        isPass
+          ? {
+              success: true,
+              message: "User logged-in successfully!!",
+              userData: data,
+            }
+          : { success: false, message: "Incorrect Password" }
+      );
     } else {
       response
         .status(200)

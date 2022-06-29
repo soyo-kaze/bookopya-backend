@@ -7,7 +7,7 @@ import userRouter from "./routes/user.route.mjs";
 dotenv.config();
 
 const DB_SRV = process.env.BOOKOPYA_DB_SRV;
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 
 const app = express();
 
